@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
 
   build: {
-    outDir: "frontend/dist", // Make sure this is relative to the `frontend` directory
+    outDir: "dist", // Make sure this is relative to the `frontend` directory
     assetsDir: "assets", // Ensure assets are being placed correctly
   },
 });
