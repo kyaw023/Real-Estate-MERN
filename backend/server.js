@@ -14,9 +14,7 @@ const app = express();
 
 require("dotenv").config();
 
-app.use(cors());
-
-app.options("*", cors()); // Handle preflight requests for all routes
+ // Handle preflight requests for all routes
 
 app.use(express.json());
 
