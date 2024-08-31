@@ -18,8 +18,9 @@ app.options("*", cors()); // Handle preflight requests for all routes
 
 app.use(
   cors({
-    origin: "https://real-estate-mern-frontend-ten.vercel.app/",
+    origin: "https://real-estate-mern-frontend-ten.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
