@@ -42,8 +42,8 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get('/', (req, res) => {
+  res.send('Hello World!');
 });
 
 app.use("/api/user", AuthMiddleWare, userRoute);
