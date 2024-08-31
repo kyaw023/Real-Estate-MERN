@@ -16,7 +16,10 @@ require("dotenv").config();
 
 app.use(
   cors({
-    origin: ["https://real-estate-mern-frontend.onrender.com"],
+    origin: [
+      "http://localhost:5173",
+     
+    ],
     credentials: true,
   })
 );
@@ -49,5 +52,5 @@ app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // Handle client-side routing
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../frontend", "index.html"));
+  res.sendFile(path.resolve(__dirname, "../", "index.html"));
 });
