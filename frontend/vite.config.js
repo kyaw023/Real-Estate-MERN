@@ -7,6 +7,5 @@ export default defineConfig({
 
   build: {
     outDir: "dist", // Make sure this is relative to the `frontend` directory
-    assetsDir: "assets", // Ensure assets are being placed correctly
   },
 });
