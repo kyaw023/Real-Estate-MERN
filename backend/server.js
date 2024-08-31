@@ -48,9 +48,9 @@ app.use("/api/listing", AuthMiddleWare, listingRoute);
 app.use("/api/auth", authRoute);
 
 // Serve static files
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // Handle client-side routing
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "dist", "index.html"));
+  res.sendFile(path.resolve(__dirname, "../frontend/dist", "index.html"));
 });
