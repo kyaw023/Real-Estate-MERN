@@ -2,6 +2,7 @@
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
+  "proxy": "https://real-estate-mern-backend-eight.vercel.app",
   "type": "module",
   "scripts": {
     "dev": "vite",
