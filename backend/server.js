@@ -5,6 +5,7 @@ const authRoute = require("./routes/auth.route");
 const listingRoute = require("./routes/listing.route");
 
 const cors = require("cors");
+const path = require("path");
 
 const cookieParser = require("cookie-parser");
 const AuthMiddleWare = require("./middlewares/AuthMiddleWare");
@@ -15,7 +16,10 @@ require("dotenv").config();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://real-estate-mern-frontend.onrender.com",
+    ],
     credentials: true,
   })
 );
@@ -42,3 +46,11 @@ app.listen(port, () => {
 app.use("/api/user", AuthMiddleWare, userRoute);
 app.use("/api/listing", AuthMiddleWare, listingRoute);
 app.use("/api/auth", authRoute);
+
+// Serve static files
+app.use(express.static(path.join(__dirname, "dist")));
+
+// Handle client-side routing
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "dist", "index.html"));
+});
