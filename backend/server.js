@@ -18,7 +18,7 @@ app.use(cors());
 
 app.use(
   cors({
-    origin: "https://real-estate-mern-k19pcs5jg-kyaw023s-projects.vercel.app",
+    origin: "https://real-estate-mern-5p2v-frontend.vercel.app",
     credentials: true,
   })
 );
@@ -42,8 +42,8 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
 app.use("/api/user", AuthMiddleWare, userRoute);
