@@ -16,12 +16,10 @@ require("dotenv").config();
 
 app.use(
   cors({
-    origin: "https://real-estate-mern-frontend.onrender.com",
+    origin: ["http://localhost:5173"],
     credentials: true,
   })
 );
-
-app.options("*", cors());
 
 app.use(express.json());
 
