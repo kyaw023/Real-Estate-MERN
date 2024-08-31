@@ -14,12 +14,11 @@ const app = express();
 
 require("dotenv").config();
 
+app.use(cors());
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-     
-    ],
+    origin: "https://real-estate-mern-k19pcs5jg-kyaw023s-projects.vercel.app",
     credentials: true,
   })
 );
