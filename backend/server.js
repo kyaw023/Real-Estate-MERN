@@ -42,6 +42,10 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.use("/api/user", AuthMiddleWare, userRoute);
 app.use("/api/listing", AuthMiddleWare, listingRoute);
 app.use("/api/auth", authRoute);
