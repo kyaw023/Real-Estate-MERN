@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Formik } from "formik";
 import * as yup from "yup";
-import { Button, Divider, Spinner } from "@nextui-org/react";
+import { Button,  Spinner } from "@nextui-org/react";
 import { Link, useNavigate } from "react-router-dom";
 import { FormComponent } from "../../components";
 import axios from "axios";
