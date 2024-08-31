@@ -14,11 +14,12 @@ const app = express();
 
 require("dotenv").config();
 
-app.use(cors());
+app.options("*", cors()); // Handle preflight requests for all routes
 
 app.use(
   cors({
-    origin: "https://real-estate-mern-5p2v-frontend.vercel.app",
+    origin: "https://real-estate-mern-frontend-ten.vercel.app/",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
