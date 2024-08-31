@@ -24,7 +24,6 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-
 mongoose
   .connect(process.env.URL)
   .then(() => {
@@ -41,5 +40,5 @@ app.listen(port, () => {
 });
 
 app.use("/api/user", AuthMiddleWare, userRoute);
-app.use("/api/listing", listingRoute);
+app.use("/api/listing", AuthMiddleWare, listingRoute);
 app.use("/api/auth", authRoute);

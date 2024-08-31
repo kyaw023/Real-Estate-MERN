@@ -77,7 +77,6 @@ const authController = {
       // Set cookie with token and maxAge (1 day)
       res.cookie("jwt", token, {
         httpOnly: false,
-
         maxAge: 24 * 60 * 60 * 1000, // 1 day
       });
 
@@ -94,7 +93,6 @@ const authController = {
       // If error occurs
     } catch (error) {
       console.log(error);
-
       return res.status(500).json({ msg: "Internal server error" });
     }
   },
@@ -174,7 +172,7 @@ const authController = {
       if (user) {
         const token = createToken(user._id);
         res.cookie("jwt", token, {
-          httpOnly: true,
+          httpOnly: false,
           maxAge: 24 * 60 * 60 * 1000, // 1 day
         });
 

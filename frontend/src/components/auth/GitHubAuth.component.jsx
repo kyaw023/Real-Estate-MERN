@@ -1,5 +1,12 @@
 import { Button } from "@nextui-org/react";
-import { getAuth, GithubAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  EmailAuthProvider,
+  fetchSignInMethodsForEmail,
+  getAuth,
+  GithubAuthProvider,
+  linkWithCredential,
+  signInWithPopup,
+} from "firebase/auth";
 import React from "react";
 import { app } from "../../firebase";
 import { setError, setLoginSuccess } from "../../slice/userSlice";
@@ -15,21 +22,20 @@ const GitHubAuthComponent = () => {
   const handleGitHubAuth = async () => {
     try {
       const provider = new GithubAuthProvider();
-
       const auth = getAuth(app);
 
+      // Start GitHub Authentication
       const result = await signInWithPopup(auth, provider);
 
       // Extract user details from the result
       const { displayName, email, photoURL } = result.user;
 
-      console.log(displayName, email, photoURL);
-
+      // Make an API request to your backend
       const { data } = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/api/auth/github`,
         {
-          name: displayName,
-          email,
+          name: result.user.displayName,
+          email: result.user.email,
           photo: photoURL,
         },
         {
@@ -46,15 +52,13 @@ const GitHubAuthComponent = () => {
         throw new Error(data?.msg || "Authentication failed");
       }
     } catch (error) {
-      console.error("Error during Google authentication:", error);
-
-      // Display the error message to the user using toast
+      console.error("Error during GitHub authentication:", error);
+      
       toast.error(error?.response?.data?.msg || error.message);
-
-      // Set the error message in the Redux store
       dispatch(setError(error?.response?.data?.msg || error.message));
     }
   };
+
   return (
     <Button
       onClick={handleGitHubAuth}

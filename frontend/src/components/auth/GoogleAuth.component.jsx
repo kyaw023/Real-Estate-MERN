@@ -18,8 +18,6 @@ const GoogleAuthComponent = () => {
 
       const result = await signInWithPopup(auth, provider);
 
-      console.log("Auth result:", result.user.photoURL);
-
       const { data } = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/api/auth/google`,
         {

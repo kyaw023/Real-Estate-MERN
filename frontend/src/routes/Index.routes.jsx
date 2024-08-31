@@ -48,11 +48,6 @@ const IndexRoutes = () => {
     auth.signOut();
     persistor.flush();
     dispatch(setLogoutSuccess());
-
-    // Handle error states
-
-    toast.error("Error loading app. Please try again later.");
-
     return <Navigate to="/sign-in" />;
   }
 
