@@ -18,23 +18,16 @@ app.options("*", cors()); // Handle preflight requests for all routes
 
 app.use(express.json());
 
-const corsOptions = {
-  origin: "https://real-estate-mern-frontend-ten.vercel.app",
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
-
-// app.use(
-//   cors({
-//     origin: "https://real-estate-mern-frontend-ten.vercel.app",
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//     credentials: true,
-//   })
-// );
-
 app.use(cookieParser());
+
+app.use(
+  cors({
+    origin: "https://real-estate-mern-frontend-ten.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
 mongoose
   .connect(process.env.URL)
