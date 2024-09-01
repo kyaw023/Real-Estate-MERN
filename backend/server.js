@@ -46,6 +46,14 @@ mongoose
     console.log(err);
   });
 
+  // Serve static files
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+// Handle client-side routing
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../", "index.html"));
+});
+
 const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
@@ -60,10 +68,4 @@ app.use("/api/user", AuthMiddleWare, userRoute);
 app.use("/api/listing", AuthMiddleWare, listingRoute);
 app.use("/api/auth", authRoute);
 
-// Serve static files
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-// Handle client-side routing
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../", "index.html"));
-});
