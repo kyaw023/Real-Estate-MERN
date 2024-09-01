@@ -14,18 +14,28 @@ const app = express();
 
 require("dotenv").config();
 
- // Handle preflight requests for all routes
-
-app.use(express.json());
-
-app.use(cookieParser());
+// Handle preflight requests for all routes
 
 app.use(
   cors({
     origin: "https://real-estate-mern-frontend-ten.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
+
+app.options(
+  "*",
+  cors({
+    origin: "https://real-estate-mern-frontend-ten.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+  })
+);
+
+app.use(express.json());
+
+app.use(cookieParser());
 
 mongoose
   .connect(process.env.URL)
