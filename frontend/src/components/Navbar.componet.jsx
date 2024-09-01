@@ -54,7 +54,6 @@ const NavbarComponet = () => {
 
   return (
     <Navbar
-      isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       variant="floating"
       className="z-50"
@@ -69,7 +68,10 @@ const NavbarComponet = () => {
       </NavbarContent>
 
       {/* Menu Content for larger screens */}
-      <NavbarMenu className="hidden sm:flex gap-4" justify="center">
+      <NavbarMenu
+        className={`sm:flex gap-4 ${isMenuOpen ? "block" : "hidden"}`}
+        justify="center"
+      >
         <NavbarMenuItem>
           <Link to={"/"} color="foreground">
             Home
@@ -136,6 +138,7 @@ const NavbarComponet = () => {
         {/* Menu Toggle Button */}
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="sm:hidden"
         />
       </NavbarContent>
