@@ -24,11 +24,10 @@ app.use(
   })
 );
 
-// Middlewares set up
+// Middlewares
 app.use(express.json());
 app.use(cookieParser());
 
-// Connect to database
 mongoose
   .connect(process.env.URL)
   .then(() => {
@@ -41,27 +40,21 @@ mongoose
 // Serve static files
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-// Routes
+// Handle client-side routing
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../", "index.html"));
+});
+
 app.use("/api/auth", authRoute);
 app.use("/api/user", AuthMiddleWare, userRoute);
 app.use("/api/listing", AuthMiddleWare, listingRoute);
 
-// Handle client-side routing
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../frontend/dist", "index.html"));
-});
-
-// Start server
-const port = process.env.PORT || 4000;
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
-
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something broke!");
-});
-
 app.get("/", (req, res) => {
   res.send("Hello World!");
+});
+
+const port = process.env.PORT || 4000;
+
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });

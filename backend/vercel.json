@@ -9,6 +9,14 @@
   "routes": [
     {
       "src": "/api/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/dist/$1"
+    },
+    {
+      "src": "/.*",
       "dest": "/server.js",
       "methods": ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
       "headers": {
@@ -20,10 +28,6 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/frontend/dist/$1"
-    },
-    {
-      "src": "/.*",
       "dest": "/server.js"
     }
   ]
