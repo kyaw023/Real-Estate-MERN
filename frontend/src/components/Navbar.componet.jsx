@@ -52,7 +52,13 @@ const NavbarComponet = () => {
   }, [location.search]);
 
   return (
-    <Navbar variant="floating" className=" z-50" maxWidth="xl" isBlurred>
+    <Navbar
+      onMenuOpenChange={setIsMenuOpen}
+      variant="floating"
+      className=" z-50"
+      maxWidth="xl"
+      isBlurred
+    >
       <NavbarContent>
         <NavbarBrand>
           <img className="" src={Logo} alt="logo" />
@@ -64,7 +70,7 @@ const NavbarComponet = () => {
               Home
             </Link>
           </NavbarItem>
-          <NavbarItem >
+          <NavbarItem>
             <Link to={"/about"} color="foreground" href="#">
               About
             </Link>
