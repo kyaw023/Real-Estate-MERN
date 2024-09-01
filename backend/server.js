@@ -55,6 +55,6 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+app.use("/api/auth", authRoute);
 app.use("/api/user", AuthMiddleWare, userRoute);
 app.use("/api/listing", AuthMiddleWare, listingRoute);
-app.use("/api/auth", authRoute);
