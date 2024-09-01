@@ -4,7 +4,6 @@ import {
   Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
   Button,
   NavbarMenuToggle,
   Input,
@@ -54,7 +53,14 @@ const NavbarComponet = () => {
   }, [location.search]);
 
   return (
-    <Navbar variant="floating" className="z-50" maxWidth="xl" isBlurred>
+    <Navbar
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+      variant="floating"
+      className="z-50"
+      maxWidth="xl"
+      isBlurred
+    >
       <NavbarContent>
         <NavbarBrand>
           <img className="" src={Logo} alt="logo" />
@@ -63,7 +69,7 @@ const NavbarComponet = () => {
       </NavbarContent>
 
       {/* Menu Content for larger screens */}
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarMenu className="hidden sm:flex gap-4" justify="center">
         <NavbarMenuItem>
           <Link to={"/"} color="foreground">
             Home
@@ -84,7 +90,7 @@ const NavbarComponet = () => {
             Create Listing
           </Link>
         </NavbarMenuItem>
-      </NavbarContent>
+      </NavbarMenu>
 
       {/* Menu Toggle and Search/Login Content */}
       <NavbarContent justify="end">
@@ -131,25 +137,8 @@ const NavbarComponet = () => {
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
-          onClick={() => setIsMenuOpen((prev) => !prev)}
         />
       </NavbarContent>
-
-      {/* The Menu to be toggled */}
-      <NavbarMenu className={isMenuOpen ? "block" : "hidden"}>
-        <NavbarMenuItem>
-          <Link to={"/"}>Home</Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Link to={"/about"}>About</Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Link to={"/contact"}>Contact</Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Link to={"/create-listing"}>Create Listing</Link>
-        </NavbarMenuItem>
-      </NavbarMenu>
     </Navbar>
   );
 };
