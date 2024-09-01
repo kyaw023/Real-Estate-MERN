@@ -8,6 +8,8 @@ import {
   Button,
   NavbarMenuToggle,
   Input,
+  NavbarMenu,
+  NavbarMenuItem,
 } from "@nextui-org/react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { SearchIcon } from "./ui/SearchIcon";
@@ -64,29 +66,29 @@ const NavbarComponet = () => {
           <img className="" src={Logo} alt="logo" />
           <h1 className="text-xl font-semibold hidden lg:block ">Estatery</h1>
         </NavbarBrand>
-        <NavbarContent className="hidden md:flex gap-4" justify="center">
-          <NavbarItem>
+        <NavbarMenu className="hidden sm:flex gap-4" justify="center">
+          <NavbarMenuItem>
             <Link to={"/"} color="foreground" href="#">
               Home
             </Link>
-          </NavbarItem>
-          <NavbarItem>
+          </NavbarMenuItem>
+          <NavbarMenuItem>
             <Link to={"/about"} color="foreground" href="#">
               About
             </Link>
-          </NavbarItem>
-          <NavbarItem>
+          </NavbarMenuItem>
+          <NavbarMenuItem>
             <Link to={"/contact"} color="foreground" href="#">
               Contact
             </Link>
-          </NavbarItem>
+          </NavbarMenuItem>
 
-          <NavbarItem>
+          <NavbarMenuItem>
             <Link color="foreground" to={"/create-listing"}>
               Create Listing
             </Link>
-          </NavbarItem>
-        </NavbarContent>
+          </NavbarMenuItem>
+        </NavbarMenu>
       </NavbarContent>
 
       {/* menu */}

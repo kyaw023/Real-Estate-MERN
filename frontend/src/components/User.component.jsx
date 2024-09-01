@@ -29,6 +29,7 @@ const UserComponent = ({ user }) => {
   const dispatch = useDispatch();
   const [actionType, setActionType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
   const logoutHandler = async () => {
     try {
       setIsLoading(true);
@@ -112,7 +113,7 @@ const UserComponent = ({ user }) => {
                   Close
                 </Button>
                 <Button onClick={handleAction} color="primary">
-                  Yes
+                  {isLoading ? "Loading..." : "Confirm"}
                 </Button>
               </ModalFooter>
             </>
@@ -154,7 +155,7 @@ const UserComponent = ({ user }) => {
               onOpen();
             }}
           >
-            {isLoading ? "Logging Out..." : "Log Out"}
+            Log Out
           </DropdownItem>
           <DropdownItem
             className="cursor-pointer"
@@ -165,7 +166,7 @@ const UserComponent = ({ user }) => {
               onOpen();
             }}
           >
-            {isLoading ? "Deleting Account..." : "Delete Account"}
+            Delete
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
