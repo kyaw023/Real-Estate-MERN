@@ -24,15 +24,6 @@ app.use(
   })
 );
 
-app.options(
-  "*",
-  cors({
-    origin: "https://real-estate-mern-frontend-ten.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true,
-  })
-);
-
 app.use(express.json());
 
 app.use(cookieParser());
@@ -46,7 +37,7 @@ mongoose
     console.log(err);
   });
 
-  // Serve static files
+// Serve static files
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // Handle client-side routing
@@ -67,5 +58,3 @@ app.get("/", (req, res) => {
 app.use("/api/user", AuthMiddleWare, userRoute);
 app.use("/api/listing", AuthMiddleWare, listingRoute);
 app.use("/api/auth", authRoute);
-
-

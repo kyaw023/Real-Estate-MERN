@@ -10,8 +10,17 @@
     {
       "src": "/.*",
       "dest": "/server.js",
-      "methods": ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE"],
-      "headers": { "Access-Control-Allow-Origin": "*" }
+      "methods": ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+      "headers": {
+        "Access-Control-Allow-Origin": "https://real-estate-mern-frontend-ten.vercel.app",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Credentials": "true"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"
     }
   ]
 }
