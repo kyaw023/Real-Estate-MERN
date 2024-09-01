@@ -18,7 +18,7 @@ require("dotenv").config();
 
 app.use(
   cors({
-    origin: "https://real-estate-mern-frontend-ten.vercel.app",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
