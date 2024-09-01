@@ -9,6 +9,7 @@ import {
   Input,
   NavbarMenu,
   NavbarMenuItem,
+  NavbarItem,
 } from "@nextui-org/react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { SearchIcon } from "./ui/SearchIcon";
@@ -147,12 +148,6 @@ const NavbarComponet = () => {
               </Button>
             </div>
           )}
-          {/* Menu Toggle Button */}
-          <NavbarMenuToggle
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="sm:hidden"
-          />
         </NavbarContent>
         <NavbarMenu>
           {menuItems.map((item, index) => (
