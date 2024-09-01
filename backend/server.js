@@ -18,7 +18,7 @@ require("dotenv").config();
 
 const corsOptions = {
   origin: "https://real-estate-mern-fe.onrender.com",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
   optionsSuccessStatus: 200,
   credentials: true,
 };

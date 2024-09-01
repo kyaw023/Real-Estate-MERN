@@ -24,7 +24,7 @@ import { app } from "../firebase";
 import { persistor } from "../store/store";
 import { getAuth } from "firebase/auth";
 import AboutPage from "../pages/Aboute.page";
-import { toast } from "sonner";
+
 
 const IndexRoutes = () => {
   const {
@@ -37,12 +37,12 @@ const IndexRoutes = () => {
 
   // Helper function to handle loading and error states
   const getElement = (element) => {
-    if (isLoading) {
-      return <LoadingPage />;
-    }
-
     return element;
   };
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   if (isError) {
     auth.signOut();
