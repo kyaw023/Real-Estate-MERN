@@ -29,7 +29,6 @@ const UserComponent = ({ user }) => {
   const dispatch = useDispatch();
   const [actionType, setActionType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  s;
   const logoutHandler = async () => {
     try {
       setIsLoading(true);
