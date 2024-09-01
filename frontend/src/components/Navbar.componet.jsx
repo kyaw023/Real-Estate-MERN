@@ -52,97 +52,130 @@ const NavbarComponet = () => {
     }
   }, [location.search]);
 
+  const menuItems = [
+    {
+      name: "Home",
+      link: "/",
+    },
+    {
+      name: "About",
+      link: "/about",
+    },
+    {
+      name: "Contact",
+      link: "/contact",
+    },
+    {
+      name: "Create Listing",
+      link: "/create-listing",
+    },
+  ];
+
   return (
-    <Navbar
-      onMenuOpenChange={setIsMenuOpen}
-      variant="floating"
-      className="z-50"
-      maxWidth="xl"
-      isBlurred
-    >
-      <NavbarContent>
-        <NavbarBrand>
-          <img className="" src={Logo} alt="logo" />
-          <h1 className="text-xl font-semibold hidden lg:block">Estatery</h1>
-        </NavbarBrand>
-      </NavbarContent>
-
-      {/* Menu Content for larger screens */}
-      <NavbarMenu
-        className={`sm:flex gap-4 ${isMenuOpen ? "block" : "hidden"}`}
-        justify="center"
-      >
-        <NavbarMenuItem>
-          <Link to={"/"} color="foreground">
-            Home
-          </Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Link to={"/about"} color="foreground">
-            About
-          </Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Link to={"/contact"} color="foreground">
-            Contact
-          </Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Link color="foreground" to={"/create-listing"}>
-            Create Listing
-          </Link>
-        </NavbarMenuItem>
-      </NavbarMenu>
-
-      {/* Menu Toggle and Search/Login Content */}
-      <NavbarContent justify="end">
-        <form onSubmit={handleSearchSubmit}>
-          <Input
-            classNames={{
-              base: "w-[200px] md:w-[240px] h-10",
-              mainWrapper: "h-full",
-              input: "text-small",
-              inputWrapper:
-                "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-            }}
-            placeholder="Type to search..."
-            size="sm"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            startContent={<SearchIcon size={18} />}
-            type="search"
+    <div>
+      <Navbar onMenuOpenChange={setIsMenuOpen}>
+        <NavbarContent>
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className="sm:hidden"
           />
-        </form>
-        {user?.currentUser ? (
-          <UserComponent user={user?.currentUser} />
-        ) : (
-          <div className="space-x-2">
-            <Button
-              onClick={handleSignIn}
-              type="button"
-              variant="bordered"
-              className="border-primary"
-            >
-              Login
-            </Button>
-            <Button
-              onClick={handleSignUp}
-              type="button"
-              className="bg-primary text-slate-100"
-              variant="flat"
-            >
-              Sign Up
-            </Button>
-          </div>
-        )}
-        {/* Menu Toggle Button */}
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="sm:hidden"
-        />
-      </NavbarContent>
-    </Navbar>
+          <NavbarBrand>
+            <img className="" src={Logo} alt="logo" />
+            <h1 className="text-xl font-semibold hidden lg:block">Estatery</h1>
+          </NavbarBrand>
+        </NavbarContent>
+
+        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+          <NavbarItem>
+            <Link to={"/"} color="foreground">
+              Home
+            </Link>
+          </NavbarItem>
+          <NavbarItem isActive>
+            <Link to={"/about"} color="foreground">
+              About
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link to={"/contact"} color="foreground">
+              Contact
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" to={"/create-listing"}>
+              Create Listing
+            </Link>
+          </NavbarItem>
+        </NavbarContent>
+        <NavbarContent justify="end">
+          <form onSubmit={handleSearchSubmit}>
+            <Input
+              classNames={{
+                base: "w-[200px] md:w-[240px] h-10",
+                mainWrapper: "h-full",
+                input: "text-small",
+                inputWrapper:
+                  "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+              }}
+              placeholder="Type to search..."
+              size="sm"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              startContent={<SearchIcon size={18} />}
+              type="search"
+            />
+          </form>
+          {user?.currentUser ? (
+            <UserComponent user={user?.currentUser} />
+          ) : (
+            <div className="space-x-2">
+              <Button
+                onClick={handleSignIn}
+                type="button"
+                variant="bordered"
+                className="border-primary"
+              >
+                Login
+              </Button>
+              <Button
+                onClick={handleSignUp}
+                type="button"
+                className="bg-primary text-slate-100"
+                variant="flat"
+              >
+                Sign Up
+              </Button>
+            </div>
+          )}
+          {/* Menu Toggle Button */}
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="sm:hidden"
+          />
+        </NavbarContent>
+        <NavbarMenu>
+          {menuItems.map((item, index) => (
+            <NavbarMenuItem key={`${item.name}`}>
+              <Link
+                color={
+                  index === 2
+                    ? "primary"
+                    : index === menuItems.length - 1
+                    ? "danger"
+                    : "foreground"
+                }
+                className="w-full"
+                to={item.link}
+                size="lg"
+              >
+                {item.name}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+        </NavbarMenu>
+      </Navbar>
+    </div>
   );
 };
 
