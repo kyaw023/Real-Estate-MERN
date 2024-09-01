@@ -76,7 +76,7 @@ const authController = {
 
       // Set cookie with token and maxAge (1 day)
       res.cookie("jwt", token, {
-        httpOnly: false, // Set to true for security reasons
+        httpOnly: true, // Set to true for security reasons
         secure: process.env.NODE_ENV === "production", // Set to true if using HTTPS
         sameSite: "None", // Required for cross-site cookies
         maxAge: 24 * 60 * 60 * 1000, // 1 day // 1 day
