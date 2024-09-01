@@ -28,8 +28,11 @@ const UserComponent = ({ user }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const dispatch = useDispatch();
   const [actionType, setActionType] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  s;
   const logoutHandler = async () => {
     try {
+      setIsLoading(true);
       const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/api/user/logout`,
         {},
@@ -45,8 +48,10 @@ const UserComponent = ({ user }) => {
         await persistor.flush();
         dispatch(setLogoutSuccess());
         toast.success(res.data?.msg);
+        setIsLoading(false);
       }
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
       dispatch(setError(error?.response?.data?.msg || error.message));
       toast.error(error?.response?.data?.msg || error.message);
@@ -55,6 +60,7 @@ const UserComponent = ({ user }) => {
 
   const deleteAccountHandler = async () => {
     try {
+      setIsLoading(true);
       const res = await axios.delete(
         `${import.meta.env.VITE_BASE_URL}/api/user/delete/${user?._id}`,
         {
@@ -67,6 +73,7 @@ const UserComponent = ({ user }) => {
         toast.success(res.data?.msg);
       }
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
       dispatch(setError(error?.response?.data?.msg || error.message));
       toast.error(error?.response?.data?.msg || error.message);
@@ -148,7 +155,7 @@ const UserComponent = ({ user }) => {
               onOpen();
             }}
           >
-            Log Out
+            {isLoading ? "Logging Out..." : "Log Out"}
           </DropdownItem>
           <DropdownItem
             className="cursor-pointer"
@@ -159,7 +166,7 @@ const UserComponent = ({ user }) => {
               onOpen();
             }}
           >
-            Delete Account
+            {isLoading ? "Deleting Account..." : "Delete Account"}
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
